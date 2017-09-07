@@ -10,7 +10,8 @@ namespace MonitorWorkerV2
     {
         public void Start()
         {
-            var data = DataContext.Instance.Data;
+            //Init app data and update UI
+            DataContext.Instance.Init();
             //SetStartup(true);
         }
         /// <summary>

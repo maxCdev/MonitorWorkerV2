@@ -13,12 +13,28 @@ namespace MonitorWorkerV2
     public class DataContext : Singleton<DataContext>
     {
         private DataModel data;
+
+        public void Init()
+        {
+            //subscribe to any data properties changes
+            Data.PropertyChanged += (sender, e) => { SaveData(); };
+
+            //call property changed event for all data properties (for update UI)
+            foreach (var key in DataPropertiesNames)
+            {
+                Data.OnPropertyChanged(key);
+            } 
+
+        }
+
         public DataModel Data
         {
             get
             {
+                //check if data initialized
                 if (data == null)
                 {
+                    //load data from file
                     data = LoadData();
                 }
                 return data;
@@ -26,6 +42,8 @@ namespace MonitorWorkerV2
             set
             {
                 data = value;
+
+                //save data to file
                 SaveData();
             }
         }
@@ -40,6 +58,26 @@ namespace MonitorWorkerV2
                 }
                 return configPath;
             }
+        }
+        private string DataJson
+        {
+            get
+            {               
+                //serialize data, return json string
+                return  JsonConvert.SerializeObject(Data);
+            }
+           
+        }
+        public IEnumerable<string> DataPropertiesNames
+        {
+            get
+            {
+                //deserialize data
+                var dataDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(DataJson);
+                //get data properties names
+                return dataDict.Keys;
+            }
+
         }
         /// <summary>
         /// load data from user config
@@ -68,11 +106,8 @@ namespace MonitorWorkerV2
         }
         private void SaveData()
         {
-            //serialize data, get json string
-            var jsonStr = JsonConvert.SerializeObject(data);
-
             //write json to file
-            File.WriteAllText(ConfigPath, jsonStr);
+            File.WriteAllText(ConfigPath, DataJson);
         }
     }
 }

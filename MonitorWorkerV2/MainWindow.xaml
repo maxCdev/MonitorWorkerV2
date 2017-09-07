@@ -36,16 +36,16 @@
 
             <StackPanel Margin="20,10,20,0"  Grid.Row="0" VerticalAlignment="Center">
 
-                <Label>JTL-WAWI Username:</Label>
-                <TextBox></TextBox>
-                <Label>Password</Label>
-                <TextBox></TextBox>
+                <Label Content="{Binding Path=UserText}"></Label>
+                <TextBox Text="{Binding Path=WawiUserName}"></TextBox>
+                <Label Content="{Binding Path=PassText}"></Label>
+                <TextBox  Text="{Binding Path=WawiPw}"></TextBox>
             </StackPanel>
 
             <StackPanel Margin="20,0,20,0" Orientation="Vertical" Grid.Row="1" VerticalAlignment="Center">
-                <CheckBox Content="Keep credentials after restart"></CheckBox>
-                <CheckBox Content="Restart JTL-Worker on hang and every 24h"></CheckBox>
-                <CheckBox Content="Notify me per Email on Errors"></CheckBox>
+                <CheckBox IsChecked="{Binding Path=KeepCredentials, Mode=TwoWay}" Content="Keep credentials after restart"></CheckBox>
+                <CheckBox IsChecked="{Binding Path=Restart24Hours, Mode=TwoWay}" Content="Restart JTL-Worker on hang and every 24h"></CheckBox>
+                <CheckBox IsChecked="{Binding Path=NotifyEmailErrors, Mode=TwoWay}" Content="Notify me per Email on Errors"></CheckBox>
                 <TextBox></TextBox>
             </StackPanel>
 

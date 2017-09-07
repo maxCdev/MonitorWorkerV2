@@ -23,12 +23,11 @@ namespace MonitorWorkerV2
         public MainWindow()
         {
             InitializeComponent();
-            Loaded += MainWindow_Loaded;     
-        }
+            //subscribe loaded event
+            Loaded += (sender,arg) => { AppController.Instance.Start(); };
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            AppController.Instance.Start();
+            //set data context
+            DataContext = MonitorWorkerV2.DataContext.Instance.Data;
         }
     }
 }
