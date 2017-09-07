@@ -12,3 +12,5 @@ D:\Work2\MonitorWorkerV2\MonitorWorkerV2\obj\Debug\MonitorWorkerV2.Properties.Re
 D:\Work2\MonitorWorkerV2\MonitorWorkerV2\obj\Debug\MonitorWorkerV2.csproj.GenerateResource.Cache
 D:\Work2\MonitorWorkerV2\MonitorWorkerV2\obj\Debug\MonitorWorkerV2.exe
 D:\Work2\MonitorWorkerV2\MonitorWorkerV2\obj\Debug\MonitorWorkerV2.pdb
+D:\Work2\MonitorWorkerV2\MonitorWorkerV2\bin\Debug\Newtonsoft.Json.dll
+D:\Work2\MonitorWorkerV2\MonitorWorkerV2\bin\Debug\Newtonsoft.Json.xml
