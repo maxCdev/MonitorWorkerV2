@@ -35,12 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,8 +67,12 @@
     </ApplicationDefinition>
     <Compile Include="AppContext.cs" />
     <Compile Include="AppController.cs" />
+    <Compile Include="AppStartupManager.cs" />
+    <Compile Include="Core.cs" />
     <Compile Include="DataContext.cs" />
+    <Compile Include="ProcessExtension.cs" />
     <Compile Include="Singleton.cs" />
+    <Compile Include="WindowCatcher.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -104,6 +114,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\shutdown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\disconnect.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Logo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

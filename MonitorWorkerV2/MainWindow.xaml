@@ -11,6 +11,10 @@
             <Style TargetType="{x:Type CheckBox}">
                 <Setter Property="Margin" Value="10" />
             </Style>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+            </Style>
         </ResourceDictionary >
     </Window.Resources>
     <Grid>
@@ -24,14 +28,15 @@
                 <RowDefinition  Height="3*"/>
                 <RowDefinition  Height="1*"/>
             </Grid.RowDefinitions>
-
+            <Image Source="/Resources/Logo.jpg" Grid.Row="1" Height="100" Width="350" HorizontalAlignment="Left" Margin="30"></Image>
+            <StackPanel Grid.Row="0" Name="winCatch"></StackPanel>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <StackPanel Margin="20,10,20,0"  Grid.Row="0" VerticalAlignment="Center">
@@ -42,20 +47,24 @@
                 <TextBox  Text="{Binding Path=WawiPw}"></TextBox>
             </StackPanel>
 
-            <StackPanel Margin="20,0,20,0" Orientation="Vertical" Grid.Row="1" VerticalAlignment="Center">
+            <StackPanel Margin="10,0,20,0" Orientation="Vertical" Grid.Row="1" VerticalAlignment="Center">
                 <CheckBox IsChecked="{Binding Path=KeepCredentials, Mode=TwoWay}" Content="Keep credentials after restart"></CheckBox>
                 <CheckBox IsChecked="{Binding Path=Restart24Hours, Mode=TwoWay}" Content="Restart JTL-Worker on hang and every 24h"></CheckBox>
                 <CheckBox IsChecked="{Binding Path=NotifyEmailErrors, Mode=TwoWay}" Content="Notify me per Email on Errors"></CheckBox>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding Path=Email,Mode=TwoWay}" Margin="10,10,0,0"></TextBox>
             </StackPanel>
 
-            <Image Grid.Row="2" Width="150" HorizontalAlignment="Stretch"></Image>
+            <Image Grid.Row="2" Height="100" Width="100" HorizontalAlignment="Stretch" Source="{Binding Path=ProcessRunIco}"></Image>
 
             <StackPanel Margin="0,0,30,40" Grid.Row="3" VerticalAlignment="Bottom">
 
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
-                    <Button HorizontalAlignment="Right" Width="50" Height="50">sad</Button>
-                    <Button HorizontalAlignment="Right" Width="50" Height="50">sad</Button>
+                    <Button HorizontalAlignment="Right" Width="50" Height="50">
+                        <Image Source="{Binding Path=ShutdownIco}" />
+                    </Button>
+                    <Button HorizontalAlignment="Right" Width="50" Height="50">
+                        <Image Source="{Binding Path=DisconnectIco}" />
+                    </Button>
                 </StackPanel>
             </StackPanel>
 

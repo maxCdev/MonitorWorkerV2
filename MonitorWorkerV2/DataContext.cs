@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Newtonsoft.Json;
 namespace MonitorWorkerV2
 {
@@ -18,13 +13,15 @@ namespace MonitorWorkerV2
         {
             //subscribe to any data properties changes
             Data.PropertyChanged += (sender, e) => { SaveData(); };
+            
+            //get data model properties
+            var dataProperties = Data.GetType().GetProperties();
 
             //call property changed event for all data properties (for update UI)
-            foreach (var key in DataPropertiesNames)
-            {
-                Data.OnPropertyChanged(key);
+            foreach (var prop in dataProperties)
+            {                
+                Data.OnPropertyChanged(prop.Name);
             } 
-
         }
 
         public DataModel Data
@@ -65,19 +62,7 @@ namespace MonitorWorkerV2
             {               
                 //serialize data, return json string
                 return  JsonConvert.SerializeObject(Data);
-            }
-           
-        }
-        public IEnumerable<string> DataPropertiesNames
-        {
-            get
-            {
-                //deserialize data
-                var dataDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(DataJson);
-                //get data properties names
-                return dataDict.Keys;
-            }
-
+            }           
         }
         /// <summary>
         /// load data from user config

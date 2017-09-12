@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace MonitorWorkerV2
 {
@@ -14,102 +10,33 @@ namespace MonitorWorkerV2
             //set default data
             UserText = "JTL-WAWI Username:";
             PassText = "Password";
+            ProcessRunIco = "/Resources/Play.png";
+            ShutdownIco = "/Resources/shutdown.png";
+            DisconnectIco = "/Resources/disconnect.jpg";
         }
 #region one way data
-        public string AppParams
-        {
-            get; set;
-        }
+        public string AppParams { get; set; }
+        public string AppPath { get; set; }
+        public string Background { get; set; }
+        public string DisconnectApp { get; set; }
+        public string DisconnectIco { get; set; }
+        public string DisconnectText { get; set; }
+        public string KillText { get; set; }
+        public string LogoApp { get; set; }
+        public string MandantText { get; set; }
+        public string MonitorText { get; set; }
+        public string PassText { get; set; }
+        public string ProcessName { get; set; }
+        public string ShutdownIco { get; set; }
+        public string ShutdownText { get; set; }
+        public string StartText { get; set; }
+        public string UserText { get; set; }
+        public string WawiMandant { get; set; }
+        public string ProcessRunIco { get; set; }
+        public string ProcessStopIco { get; set; }
+        #endregion
 
-        public string AppPath
-        {
-            get; set;
-        }
-
-        public string Background
-        {
-            get; set; 
-        }
-
-        public string DisconnectApp
-        {
-            get; set;
-        }
-
-        public string DisconnectIco
-        {
-            get; set;
-        }
-
-        public string DisconnectText
-        {
-            get; set;
-        }
-
-        public string KillText
-        {
-            get; set;
-        }
-
-        public string LogoApp
-        {
-            get; set;
-            
-        }
-
-        public string MandantText
-        {
-            get;
-
-            set;
-        }
-
-        public string MonitorText
-        {
-            get; set;
-        }
-
-        public string PassText
-        {
-            get; set;           
-        }
-
-        public string ProcessName
-        {
-            get; set;
-        }
-
-        public string ShutdownIco
-        {
-            get; set;
-        }
-
-        public string ShutdownText
-        {
-            get; set;
-        }
-
-        public string StartText
-        {
-            get; set;
-        }
-
-        public string UserText
-        {
-            get;
-
-            set;
-        }
-
-        public string WawiMandant
-        {
-            get;
-
-            set;
-        }
-#endregion
-
-#region two way data
+        #region two way data
         private string _wawiPw;
         public string WawiPw
         {
@@ -121,7 +48,7 @@ namespace MonitorWorkerV2
             set
             {
                 _wawiPw = value;
-                OnPropertyChanged("WawiPw");
+                OnPropertyChanged();
             }
         }
         private string _wawiUserName;
@@ -135,7 +62,7 @@ namespace MonitorWorkerV2
             set
             {
                 _wawiUserName = value;
-                OnPropertyChanged("WawiUserName");
+                OnPropertyChanged();
             }
         }
         private string _keepCredentials;
@@ -149,7 +76,7 @@ namespace MonitorWorkerV2
             set
             {
                 _keepCredentials = value;
-                OnPropertyChanged("KeepCredentials");
+                OnPropertyChanged();
             }
         }
         private bool _restart24Hours;
@@ -163,7 +90,7 @@ namespace MonitorWorkerV2
             set
             {
                 _restart24Hours = value;
-                OnPropertyChanged("Restart24Hours");
+                OnPropertyChanged();
             }
         }
         private bool _notifyEmailErrors;
@@ -177,7 +104,7 @@ namespace MonitorWorkerV2
             set
             {
                 _notifyEmailErrors = value;
-                OnPropertyChanged("NotifyEmailErrors");
+                OnPropertyChanged();
             }
         }
         private string _email;
@@ -191,14 +118,14 @@ namespace MonitorWorkerV2
             set
             {
                 _email = value;
-                OnPropertyChanged("Email");
+                OnPropertyChanged();
             }
         }
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChanged(string propertyName)
+        public void OnPropertyChanged([CallerMemberName] string propertyName="")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -225,6 +152,8 @@ namespace MonitorWorkerV2
         string DisconnectIco { set; get; }
         string LogoApp { set; get; }
         string DisconnectApp { set; get; }
+        string ProcessRunIco { set; get; }
+        string ProcessStopIco { get; set; }
 
     }
     /// <summary>
